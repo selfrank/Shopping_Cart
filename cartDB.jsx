@@ -178,14 +178,15 @@ const Products = (props) => {
     //cart.map((item, index) => deleteCartItem(index));
     return newTotal;
   };
-  const restockProducts = (url) => {
+
+ const restockProducts = (url) => {
     doFetch(url);
     let newItems = data.data.map((item) => {
-      let { name, country, cost, instock } = item;
+      let {attributes:{ name, country, cost, instock }} = item;
       return { name, country, cost, instock };
     });
     setItems([...items, ...newItems]);
-  };
+    console.log(`newItems ${JSON.stringify(newItems)}`);
 
   return (
     <Container>
